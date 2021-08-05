@@ -15,7 +15,6 @@ const BoxIcon = styled("p")(({ theme }) => ({
   padding: "0px 11px 0px 11px",
   borderRadius: "18px",
   border: "1px solid #F2F1FE",
-  background: "#F2F1FE",
   marginLeft: "20px",
 }));
 const BoxContent = styled("div")(({ theme }) => ({
@@ -34,7 +33,7 @@ const DashboardContent = () => {
                   <p>{data.icon}</p>
                 </BoxIcon>
                 <BoxContent>
-                  <h4>{data.title}</h4>
+                  <p style={{ fontSize: "14px" }}>{data.title}</p>
                   <h2 style={{ color: "#663399" }}>{data.point}</h2>
                 </BoxContent>
               </BoxWrapper>

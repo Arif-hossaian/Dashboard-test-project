@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { styled, alpha } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartLine, faTv, faMouse, faMale } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChartLine,
+  faTv,
+  faMouse,
+  faMale,
+} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -9,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Navbar from "../Navbar/Navbar";
 import { faClipboard } from "@fortawesome/free-regular-svg-icons";
-import DashboardContent from './Layout-content/DashboardContent';
+import DashboardContent from "./Layout-content/DashboardContent";
 
 const Header = styled("div")(({ theme }) => ({
   textAlign: "center",
@@ -19,23 +24,29 @@ const Header = styled("div")(({ theme }) => ({
 }));
 const TabsIconWrapper = styled("div")(({ theme }) => ({
   color: "white",
-  '&:hover': {
+  textTransform: "capitalize",
+  "&:hover": {
     borderColor: "blue",
-    },
+  },
 }));
 const TabsWrapper = styled("div")(({ theme }) => ({
-  borderColor: "blue",
-  // '&:hover': {
-  //   borderColor: "blue",
-  //   },
+  textAlign: "center",
+  "&:hover": {
+    backgroundColor: "#7D48B1",
+  },
+}));
+const TabsPanelWrapper = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  marginBottom: "0px",
+  backgroundColor: "#F1F3F4",
 }));
 const TabIconWrapper = styled("div")(({ theme }) => ({
+  color: "white",
+  textTransform: "capitalize",
   margin: "15px 0px 15px 0px",
-  '&:hover': {
-    color: "blue",
-    },
-}))
-
+}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,7 +83,6 @@ function a11yProps(index) {
 
 export default function Layout({ children }) {
   const [value, setValue] = useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -99,57 +109,85 @@ export default function Layout({ children }) {
         }}
       >
         <Header>Gull</Header>
-        <Tab label={
-          <TabsIconWrapper><FontAwesomeIcon icon={faChartLine} color="white" size="2x"/>
-          <p >Dashboard</p></TabsIconWrapper>
-        } {...a11yProps(0)} />
-        <Tab label={
-          <TabIconWrapper><FontAwesomeIcon icon={faClipboard} color="white" size="2x"/></TabIconWrapper>
-        } {...a11yProps(1)} />
-        <Tab label={
-          <TabIconWrapper><FontAwesomeIcon icon={faTv} color="white" size="2x"/></TabIconWrapper>
-        } {...a11yProps(2)} />
-        <Tab label={
-          <TabIconWrapper><FontAwesomeIcon icon={faMouse} color="white" size="2x"/></TabIconWrapper>
-        } {...a11yProps(3)} />
-        <Tab label={
-          <TabIconWrapper><FontAwesomeIcon icon={faMale} color="white" size="2x"/></TabIconWrapper>
-        } {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab
+          label={
+            <TabsWrapper>
+              <TabsIconWrapper>
+                <FontAwesomeIcon icon={faChartLine} color="white" size="2x" />
+                <p>Dashboard</p>
+              </TabsIconWrapper>
+            </TabsWrapper>
+          }
+          {...a11yProps(0)}
+        />
+        <Tab
+          label={
+            <TabsWrapper>
+              <TabIconWrapper>
+                <FontAwesomeIcon icon={faClipboard} color="white" size="2x" />
+                <p>Notes</p>
+              </TabIconWrapper>
+            </TabsWrapper>
+          }
+          {...a11yProps(1)}
+        />
+        <Tab
+          label={
+            <TabsWrapper>
+              <TabIconWrapper>
+                <FontAwesomeIcon icon={faTv} color="white" size="2x" />
+                <p>Monitor</p>
+              </TabIconWrapper>
+            </TabsWrapper>
+          }
+          {...a11yProps(2)}
+        />
+        <Tab
+          label={
+            <TabsWrapper>
+              <TabIconWrapper>
+                <FontAwesomeIcon icon={faMouse} color="white" size="2x" />
+                <p>Click me</p>
+              </TabIconWrapper>
+            </TabsWrapper>
+          }
+          {...a11yProps(3)}
+        />
+        <Tab
+          label={
+            <TabsWrapper>
+              <TabIconWrapper>
+                <FontAwesomeIcon icon={faMale} color="white" size="2x" />
+                <p>Human</p>
+              </TabIconWrapper>
+            </TabsWrapper>
+          }
+          {...a11yProps(4)}
+        />
+        {/* <Tab label="Item Six" {...a11yProps(5)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />  */}
       </Tabs>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          marginBottom: "0px",
-          backgroundColor: "#F1F3F4",
-        }}
-      >
+      <TabsPanelWrapper>
         <Navbar />
-        <TabPanel value={value} index={0}>
-        <DashboardContent />
-        </TabPanel>
-        <TabPanel value={value} index={1} style={{ marginTop: "0px" }}>
+        <TabPanel value={value} index={0} style={{ marginTop: "20px" }}>
           <DashboardContent />
         </TabPanel>
-        <TabPanel value={value} index={2}>
-         This is table page dummy content 2
+        <TabPanel value={value} index={1} style={{ marginTop: "20px" }}>
+          <DashboardContent />
         </TabPanel>
-        <TabPanel value={value} index={3}>
-        This is table page dummy content 3
+        <TabPanel value={value} index={2} style={{ marginTop: "20px" }}>
+          This is table page dummy content 2
         </TabPanel>
-        <TabPanel value={value} index={4}>
-        This is table page dummy content 4
+        <TabPanel value={value} index={3} style={{ marginTop: "20px" }}>
+          This is table page dummy content 3
         </TabPanel>
-        <TabPanel value={value} index={5}>
-        This is table page dummy content 5
+        <TabPanel value={value} index={4} style={{ marginTop: "20px" }}>
+          This is table page dummy content 4
         </TabPanel>
-        <TabPanel value={value} index={6}>
-          Item Seven
+        <TabPanel value={value} index={5} style={{ marginTop: "20px" }}>
+          This is table page dummy content 5
         </TabPanel>
-      </div>
+      </TabsPanelWrapper>
     </Box>
   );
 }
